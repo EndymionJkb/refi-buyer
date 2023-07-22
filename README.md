@@ -1,38 +1,9 @@
-# create-svelte
+# Issuance of land ownership credentials
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This is the UI for the "Agriculture Secretary" to create Polygon ID VC's attesting to the property ownership of individuals.
 
-## Creating a project
+(At first, we thought there would only be one UI; hence the name - that's a hackathon for you.)
 
-If you're seeing this, you've probably already done this step. Congrats!
+There is also a "Minter" UI, which verifies the Polygon ID credential and causes the minting of `Steward Tokens`, proportional to land ownership.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Finally, there is the "Offset" UI, which allows users to purchase and retire carbon credits on Celo (50/50 NCT and Steward Tokens), and receive an NFT.
