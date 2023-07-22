@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { SECRETARIA_DID } from '$env/static/public';
+	import { PUBLIC_ISSUER_DID } from '$env/static/public';
 	import { createCredential } from '$lib/vendor/polygon';
 
 	const url = dev
-		? 'http://localhost:5173'
+		? 'http://localhost:5173/api/schema'
 		: 'https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json/KYCAgeCredential-v2.json';
 	const sampleSchema = {
 		url,
@@ -15,16 +15,16 @@
 
 	let dob: string;
 	let qrUrl: string;
-	let nationalID: number = 78342349;
-	let lotAndBlock: string = '07-090-1346-0252';
-	let hectares: number = 3;
+	let nationalID: number = 111;
+	let lotAndBlock: string = 'Paris';
+	let hectares: number = 322;
 
 	async function handleCreateCredential(e: Event) {
 		const form = e.target as HTMLFormElement;
 		const formData = new FormData(form);
 		const credential = {
 			schema: sampleSchema.url,
-			issuer: SECRETARIA_DID,
+			issuer: PUBLIC_ISSUER_DID,
 			name: sampleSchema.name,
 			type: ['VerifiableCredential', sampleSchema.name],
 			subject: {
@@ -43,9 +43,9 @@
 
 <div class="grid">
 	<form on:submit|preventDefault={handleCreateCredential}>
-		<input type="number" name="National ID" bind:value={nationalID} />
-		<input type="text" name="Property description (Lot & Block)" bind:value={lotAndBlock} />
-		<input type="number" name="# Hectares" bind:value={hectares} />
+		<input type="number" name="nationalID" bind:value={nationalID} />
+		<input type="text" name="lotAndBlock" bind:value={lotAndBlock} />
+		<input type="number" name="hectares" bind:value={hectares} />
 		<button type="submit"> Submit </button>
 	</form>
 	{#if hasClaimUrl}
