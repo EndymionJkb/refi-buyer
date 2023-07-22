@@ -3,9 +3,7 @@
 	import { PUBLIC_SECRETARIA_DID } from '$env/static/public';
 	import { createCredential } from '$lib/vendor/polygon';
 
-	const url = dev
-		? 'http://localhost:5173/api/schema'
-		: 'https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json/KYCAgeCredential-v2.json';
+	const url = 'https://raw.githubusercontent.com/EndymionJkb/refi-buyer/master/src/lib/schemas/json/LandOwnershipCredential.json';
 	const sampleSchema = {
 		url,
 		name: 'LandOwnership'
