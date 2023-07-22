@@ -1,44 +1,36 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { createCredential, createDID } from '$lib/vendor/polygon';
-	import { getUnixTime } from 'date-fns/fp';
+	import { SECRETARIA_DID } from '$env/static/public';
+	import { createCredential } from '$lib/vendor/polygon';
 
 	const url = dev
 		? 'http://localhost:5173'
 		: 'https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json/KYCAgeCredential-v2.json';
 	const sampleSchema = {
 		url,
-		name: 'KYCAgeCredential'
+		name: 'LandOwnership'
 	};
 
-	let hasCreatedDid = false;
 	let hasClaimUrl = false;
 
-	let issuer: string;
-	let value = 'Fish';
 	let dob: string;
 	let qrUrl: string;
+	let nationalID: number = 78342349;
+	let lotAndBlock: string = '07-090-1346-0252';
+	let hectares: number = 3;
 
-	async function handleCreateDid(e: Event) {
-		const form = e.target as HTMLFormElement;
-		const formData = new FormData(form);
-		const inputName = formData.get('name') as string;
-		const data = await createDID(inputName);
-		hasCreatedDid = true;
-		issuer = data.did;
-	}
 	async function handleCreateCredential(e: Event) {
 		const form = e.target as HTMLFormElement;
 		const formData = new FormData(form);
-		console.log(formData.get('dob'));
 		const credential = {
 			schema: sampleSchema.url,
-			issuer,
+			issuer: SECRETARIA_DID,
 			name: sampleSchema.name,
 			type: ['VerifiableCredential', sampleSchema.name],
 			subject: {
-				birthday: getUnixTime(new Date(dob)),
-				documentType: 3324
+				nationalID,
+				lotAndBlock,
+				hectares
 			}
 		};
 		const data = await createCredential(credential);
@@ -46,22 +38,18 @@
 		hasClaimUrl = true;
 	}
 
-	$: console.log(dob);
+	$: console.log({ nationalID, lotAndBlock, hectares });
 </script>
 
 <div class="grid">
+	<form on:submit|preventDefault={handleCreateCredential}>
+		<input type="number" name="National ID" bind:value={nationalID} />
+		<input type="text" name="Property description (Lot & Block)" bind:value={lotAndBlock} />
+		<input type="number" name="# Hectares" bind:value={hectares} />
+		<button type="submit"> Submit </button>
+	</form>
 	{#if hasClaimUrl}
 		<a href={qrUrl} target="_blank">{qrUrl}</a>
-	{:else if hasCreatedDid}
-		<form on:submit|preventDefault={handleCreateCredential}>
-			<input type="date" name="dob" bind:value={dob} />
-			<button type="submit"> Submit </button>
-		</form>
-	{:else}
-		<form on:submit|preventDefault={handleCreateDid}>
-			<input type="text" name="name" bind:value />
-			<button type="submit"> Submit </button>
-		</form>
 	{/if}
 </div>
 

@@ -40,8 +40,9 @@ export interface Credential {
 }
 
 export interface Subject {
-	birthday: number;
-	documentType: number;
+	nationalID: number;
+	lotAndBlock: string;
+	hectares: number;
 }
 
 export const createDID = async (name: string) => {
@@ -56,10 +57,8 @@ export const createDID = async (name: string) => {
 };
 
 export const createCredential = async (credential: Credential) => {
-    
-	const { data } = await axios.post<CreateCredentialResponse>(
-		base + 'api/create-credential/',
-		{credential}
-	);
+	const { data } = await axios.post<CreateCredentialResponse>(base + 'api/create-credential/', {
+		credential
+	});
 	return data;
 };
