@@ -1,0 +1,33 @@
+{
+  "@context": [
+    {
+      "@version": 1.1,
+      "@protected": true,
+      "id": "@id",
+      "type": "@type",
+      "LandOwnershipCredential": {
+        "@id": "https://raw.githubusercontent.com/EndymionJkb/refi-buyer/master/src/lib/schemas/json-ld/landownership.json-ld#LandOwnershipCredential",
+        "@context": {
+          "@version": 1.1,
+          "@protected": true,
+          "id": "@id",
+          "type": "@type",
+          "land-vocab": "https://raw.githubusercontent.com/EndymionJkb/refi-buyer/master/src/lib/credentials/land.md#",
+          "xsd": "http://www.w3.org/2001/XMLSchema#",
+          "nationalID": {
+            "@id": "land-vocab:nationalID",
+            "@type": "xsd:integer"
+          },
+          "lotAndBlock": {
+            "@id": "land-vocab:lotAndBlock",
+            "@type": "xsd:text"
+          },
+          "hectares": {
+            "@id": "land-vocab:hectares",
+            "@type": "xsd:integer"
+          },
+        }
+      }
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import type { RequestHandler } from './$types';
-import landownship from '$lib/landownship.json-ld?raw';
+import landownership from '$lib/schemas/json-ld/landownership.json-ld?raw';
 export const GET: RequestHandler = async () => {
-	return new Response(landownship);
+	return new Response(landownership);
 };
