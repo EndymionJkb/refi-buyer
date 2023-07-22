@@ -1,9 +1,13 @@
 <script lang="ts">
+	import { dev } from '$app/environment';
 	import { createCredential, createDID } from '$lib/vendor/polygon';
 	import { getUnixTime } from 'date-fns/fp';
 
+	const url = dev
+		? 'http://localhost:5173'
+		: 'https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json/KYCAgeCredential-v2.json';
 	const sampleSchema = {
-		url: 'https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json/KYCAgeCredential-v2.json',
+		url,
 		name: 'KYCAgeCredential'
 	};
 
