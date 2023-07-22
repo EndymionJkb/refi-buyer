@@ -24,7 +24,7 @@
           },
           "hectares": {
             "@id": "land-vocab:hectares",
-            "@type": "xsd:integer"
+            "@type": "xsd:number"
           },
         }
       }
