@@ -41,9 +41,14 @@
 
 <div class="grid">
 	<form on:submit|preventDefault={handleCreateCredential}>
-		<input type="number" name="National ID" bind:value={nationalID} />
-		<input type="text" name="Property Description (Lot & Block)" bind:value={lotAndBlock} />
-		<input type="number" name="# Hectares" bind:value={hectares} />
+	  <label for="nationalID">National ID</label>
+		<input type="number" id="nationalID" bind:value={nationalID} />
+		<br />
+		<label for="propertyDescription">Property Description (Lot & Block)</label>
+		<input type="text" id="propertyDescription" bind:value={lotAndBlock} />
+		<br />
+		<label for="numHectares">Number of Hectares</label>
+		<input type="number" id="numHectares" bind:value={hectares} />
 		<button type="submit"> Submit </button>
 	</form>
 	{#if hasClaimUrl}
