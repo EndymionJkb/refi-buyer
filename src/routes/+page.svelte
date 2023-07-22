@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
-	import { SECRETARIA_DID } from '$env/static/public';
+	import { PUBLIC_SECRETARIA_DID } from '$env/static/public';
 	import { createCredential } from '$lib/vendor/polygon';
 
 	const url = dev
@@ -24,7 +24,7 @@
 		const formData = new FormData(form);
 		const credential = {
 			schema: sampleSchema.url,
-			issuer: SECRETARIA_DID,
+			issuer: PUBLIC_SECRETARIA_DID,
 			name: sampleSchema.name,
 			type: ['VerifiableCredential', sampleSchema.name],
 			subject: {
